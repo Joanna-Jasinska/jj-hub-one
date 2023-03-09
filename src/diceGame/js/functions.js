@@ -1,9 +1,8 @@
-// export
-
-function log(l = '------------------------------------------------') {
+export const log = (l = '------------------------------------------------') => {
   console.log(l);
-}
-const f = {
+};
+
+export const functions = {
   getRandomHexColor() {
     return `#${Math.floor(Math.random() * 16777215)
       .toString(16)

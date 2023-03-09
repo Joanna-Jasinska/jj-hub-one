@@ -1,5 +1,5 @@
 // export
-const dices = [
+export const dices = [
   {
     type: 'dice',
     max: '4',

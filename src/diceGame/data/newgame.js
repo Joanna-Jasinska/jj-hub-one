@@ -1,35 +1,31 @@
 // export
-const newGame = {
+export const newGame = {
   dices: [
     {
-      type: 'dice',
-      max: '20',
-      min: '1',
-      name: 'k20',
+      id: 'dicek20',
     },
     {
-      type: 'dice',
-      max: '6',
-      min: '1',
-      name: 'k6',
+      id: 'dicek6',
     },
     {
-      type: 'dice',
-      max: '4',
-      min: '1',
-      name: 'k4',
+      id: 'dicek4',
     },
     {
-      type: 'dice',
-      max: '4',
-      min: '1',
-      name: 'k4',
+      id: 'dicerandom',
     },
     {
-      type: 'dice',
+      id: 'dicerandom',
+    },
+    {},
+  ],
+
+  items: [
+    {
+      id: 'use',
     },
     {
-      type: 'dice',
+      id: 'reroll',
     },
+    {},
   ],
 };
