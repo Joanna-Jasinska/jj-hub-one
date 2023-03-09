@@ -28,7 +28,7 @@
   transform: scale(1.1);
 }
 
-.diceBag {
+.bag {
   display: grid;
   max-width: 1140px;
   grid-template-columns: repeat(
@@ -40,6 +40,13 @@
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.diceBag {
+  background-color: #d7d9cc;
+}
+.itemBag {
+  background-color: #d7d9cc;
 }
 
 :not(.inactive).dice::before {

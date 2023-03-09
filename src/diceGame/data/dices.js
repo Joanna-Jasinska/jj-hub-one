@@ -1,24 +1,50 @@
-export const dices = [
+// export
+const dices = [
   {
     type: 'dice',
     max: '4',
     min: '1',
     name: 'k4',
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg',
-    description: 'Hokkaido Flower',
+    id: 'dicek4',
   },
   {
     type: 'dice',
     max: '6',
     min: '1',
     name: 'k6',
-    preview:
-      'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
-    original:
-      'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg',
-    description: 'Hokkaido Flower',
+    id: 'dicek6',
+  },
+  {
+    type: 'dice',
+    max: '8',
+    min: '1',
+    name: 'k8',
+    id: 'dicek8',
+  },
+  {
+    type: 'dice',
+    max: '10',
+    min: '1',
+    name: 'k10',
+    id: 'dicek10',
+  },
+  {
+    type: 'dice',
+    max: '12',
+    min: '1',
+    name: 'k12',
+    id: 'dicek12',
+  },
+  {
+    type: 'dice',
+    max: '20',
+    min: '1',
+    name: 'k20',
+    id: 'dicek20',
+  },
+  {
+    type: 'dice',
+    name: 'Random Dice',
+    id: 'dicerandom',
   },
 ];

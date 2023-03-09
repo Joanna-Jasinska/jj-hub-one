@@ -2,12 +2,25 @@
 // import { f } from './js/functions';
 // import { newGame } from './data/newgame';
 
-function generateDices(dices) {
-  log(`generateDices(${dices})`);
+function fetchDice(diceId = 'dicerandom') {
+  let dice = {};
+  for (d of dices) {
+    if (d.id == diceId) {
+      return d;
+    }
+  }
+}
+
+function generateDices(dicesInput) {
+  log(`generateDices(${dicesInput})`);
   const diceBag = document.querySelector('.diceBag');
   // console.log(diceBag);
 
-  for (const d of dices) {
+  for (const di of dicesInput) {
+    log(`fetching dice, dice: ${di}`);
+    log(di);
+    log(`fetchDice(di): ${fetchDice(di.id)}`);
+    const d = fetchDice(di.id);
     diceBag.append(document.createElement('div'));
     const dice =
       document.querySelectorAll('.diceBag > div')[
