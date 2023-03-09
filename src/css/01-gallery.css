@@ -6,10 +6,17 @@
   --frame-dice-height: 80px;
   --font-dice-face: 40px;
   --font-dice-max: 18px;
-  --rcolor: rgb(210, 128, 128);
+  --inactive-color: rgb(65, 65, 65);
 }
 
-.gallery {
+.button {
+  cursor: pointer;
+}
+.button:hover {
+  transform: scale(1.1);
+}
+
+.diceBag {
   display: grid;
   max-width: 1140px;
   grid-template-columns: repeat(
@@ -23,20 +30,14 @@
   margin-right: auto;
 }
 
-.gallery__item {
+.dice {
   position: relative;
   padding: 0 5px;
   cursor: pointer;
   /* border-radius: 16px; */
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-}
 
-.gallery__image:hover {
-  transform: scale(1.1);
-}
-
-.gallery__image {
   border: 3px;
   border-style: solid;
   border-color: var(--frame-default-color);
@@ -45,6 +46,10 @@
   width: 100%;
   object-fit: cover;
   transition: transform var(--animation-duration) var(--timing-function);
+}
+
+.dice:hover {
+  transform: scale(1.1);
 }
 
 .gallery__link {
@@ -62,4 +67,23 @@
 }
 .dice__rolled {
   font-size: var(--font-dice-face);
+}
+.button-end-turn {
+  cursor: pointer;
+  border: 3px;
+  border-style: solid;
+  border-color: var(--frame-default-color);
+  border-radius: 20%;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+.inactive {
+  background-color: var(--inactive-color) !important;
+}
+.inactive:hover {
+  transform: scale(1);
+  cursor: not-allowed;
 }
