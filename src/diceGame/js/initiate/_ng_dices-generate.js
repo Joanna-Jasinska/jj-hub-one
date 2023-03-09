@@ -32,9 +32,10 @@ function generateDices(dices) {
     diceMax.classList.add('dice__max');
     diceMax.innerText = `${dmax}`;
     dice.onclick = e => {
-      if (!dice.classList.contains('inactive')) {
+      let t = e.currentTarget;
+      if (t.classList.contains('dice') && !t.classList.contains('inactive')) {
         e.preventDefault();
-        dice.classList.add('inactive');
+        t.classList.add('inactive');
       }
     };
     // link.append(document.createElement('img'));
