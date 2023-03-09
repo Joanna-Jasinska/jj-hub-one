@@ -11,6 +11,7 @@
 
 .button {
   cursor: pointer;
+  transition: transform var(--animation-duration) var(--timing-function);
 }
 .button:hover {
   transform: scale(1.1);
@@ -69,7 +70,7 @@
   font-size: var(--font-dice-face);
 }
 .button-end-turn {
-  cursor: pointer;
+  padding: 0 5px;
   border: 3px;
   border-style: solid;
   border-color: var(--frame-default-color);

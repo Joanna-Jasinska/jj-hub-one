@@ -31,7 +31,7 @@ for (const gi of newGame) {
     document.querySelectorAll('.diceBag > div')[
       document.querySelectorAll('.diceBag > div').length - 1
     ];
-  dice.classList.add('dice');
+  dice.classList.add('dice', 'button');
   dice.append(document.createElement('div'));
   const diceFace = dice.querySelector('div');
   diceFace.classList.add('dice__rolled');
@@ -64,7 +64,7 @@ for (const gi of newGame) {
 }
 diceBag.prepend(document.createElement('div'));
 const endTurn = diceBag.querySelector('div');
-endTurn.classList.add('button-end-turn');
+endTurn.classList.add('button-end-turn', 'button');
 endTurn.innerText = 'End\nTurn';
 endTurn.onclick = e => {
   e.preventDefault();
