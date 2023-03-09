@@ -1,2 +1,2 @@
 log(),log("-----------page loaded----------"),log(),initiateNewGame(newGame);
-//# sourceMappingURL=01-gallery.a2c32be7.js.map
+//# sourceMappingURL=dice.8f2819fe.js.map
