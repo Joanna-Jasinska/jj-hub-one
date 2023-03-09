@@ -1,4 +1,9 @@
-export const f = {
+// export
+
+function log(l = '------------------------------------------------') {
+  console.log(l);
+}
+const f = {
   getRandomHexColor() {
     return `#${Math.floor(Math.random() * 16777215)
       .toString(16)
@@ -36,5 +41,17 @@ export const f = {
     if (rolled > 14) return epic;
     if (rolled > 9) return uncommon;
     return med;
+  },
+  getDiceBackgroundColorName(rolled, max = 6, min = 1) {
+    let varNamePart = `--dice-bg-color-`;
+    if (rolled == 20) return varNamePart + `mythic`;
+    if (rolled == min) return varNamePart + `bad`;
+    if (rolled == max) return varNamePart + `perfect`;
+    if (rolled <= Math.floor((max - min) / 5) + min) {
+      return varNamePart + `bad`;
+    }
+    if (rolled > 14) return varNamePart + `epic`;
+    if (rolled > 9) return varNamePart + `uncommon`;
+    return varNamePart + `medium`;
   },
 };
