@@ -1,3 +1,4 @@
+// module.exports = require('./lodash');
 import { dices } from './data/dices';
 // import { f } from './js/initiate/!getFunctions';
 import { log } from './js/functions';

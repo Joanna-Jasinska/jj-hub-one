@@ -5,7 +5,7 @@ import { onDices } from '../interface/onDices';
 export const _ng_dicesGenerate = {
   fetchDice(diceId = 'dicerandom') {
     let dice = {};
-    for (d of dices) {
+    for (const d of dices) {
       if (d.id == diceId) {
         return d;
       }
