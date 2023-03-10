@@ -5,7 +5,7 @@ import { onItems } from '../interface/onItems';
 export const _ng_itemsGenerate = {
   fetchItem(itemId = 'use') {
     let item = {};
-    for (itm of items) {
+    for (const itm of items) {
       if (itm.id == itemId) {
         return itm;
       }
