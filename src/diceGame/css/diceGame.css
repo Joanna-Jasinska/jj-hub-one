@@ -2,11 +2,15 @@
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-duration: 250ms;
   --frame-default-color: black;
-  /* --frame-selected-color: rgb(185, 184, 142); */
-  --frame-selected-color: rgb(114, 180, 0); /*green*/
-  --shadow-selected-color: rgb(176, 255, 157); /*green*/
-  --frame-selected-color: rgb(0, 180, 99); /*aqua*/
-  --shadow-selected-color: rgb(157, 255, 234); /*aqua*/
+  /*--frame-selected-color: rgb(114, 180, 0); /*green*/
+  /*--shadow-selected-color: rgb(176, 255, 157); /*green*/
+  /*--frame-selected-color: rgb(0, 180, 99); /*aqua*/
+  /*--shadow-selected-color: rgb(157, 255, 234); /*aqua*/
+  --frame-selected-color-back: rgb(0, 0, 0); /*yellow*/
+  --frame-selected-color-front: rgb(241, 229, 0); /*yellow*/
+  --frame-selected-color-front: rgb(255, 245, 58); /*yellow*/
+  /*--shadow-selected-color: rgb(255, 252, 157); /*yellow light*/
+  /*--shadow-selected-color: rgb(255, 251, 126); /*yellow stronger*/
   --frame-dice-width: 50px;
   --frame-dice-height: 80px;
   --font-dice-face: 40px;
@@ -18,6 +22,7 @@
   --border-radius-inner: 15%;
   --scale-up: scale(1.1);
   --scale-down: scale(0.9);
+  --selected-animation-duration: 1.2s;
 
   --dice-bg-color-bad: #ffcc99; /* l red */
   --dice-bg-color-medium: #ffffbb; /* l yellow */
@@ -25,6 +30,43 @@
   --dice-bg-color-epic: #ff66ff; /* fuschia */
   --dice-bg-color-mythic: #00ffff; /* l blue */
   --dice-bg-color-perfect: #00ff00; /* neon green */
+}
+@keyframes animateSelection {
+  0% {
+    /* 0px 0px 3px 3px var(--shadow-selected-color), */
+    /* box-shadow: inset 0px 0px 5px 5px rgba(255, 255, 255, 1); */
+    transform: var(--scale-up);
+  }
+  50% {
+    transform: scale(1.13);
+  }
+  100% {
+    /* box-shadow: inset 0px 0px 5px 5px rgba(255, 255, 255, 1); */
+    transform: var(--scale-up);
+  }
+}
+@keyframes animateSelectionBefore {
+  0% {
+    /* var(--shadow-selected-color) */
+    box-shadow: 0px 0px 2px 2px var(--frame-default-color),
+      inset 0 0 3px 4px rgba(255, 255, 255, 0.9);
+    /* 0px 0px 3px 3px var(--shadow-selected-color), */
+    /* transform: var(--scale-up); */
+  }
+  50% {
+    /* var(--shadow-selected-color) */
+    box-shadow: 0px 0px 3px 2px var(--frame-default-color),
+      inset 0px 0px 7px 6px rgb(255, 255, 255);
+    /* box-shadow: inset 0 0 0 0 white; */
+    /* transform: scale(1.13); */
+  }
+  100% {
+    /* var(--shadow-selected-color) */
+    box-shadow: 0px 0px 2px 2px var(--frame-default-color),
+      inset 0 0 3px 4px rgba(255, 255, 255, 0.9);
+    /* box-shadow: inset 0px 0px 5px 5px rgba(255, 255, 255, 1); */
+    /* transform: var(--scale-up); */
+  }
 }
 
 .button {
@@ -77,6 +119,13 @@
 }
 /* ------------------------------------------ */
 /* ------------------------------------------ */
+.item:hover:not(.inactive)::before {
+  z-index: -1;
+}
+.item:hover:not(.inactive) {
+  transform: var(--scale-up);
+  z-index: 2;
+}
 :not(.inactive).item::before {
   content: '';
   /* display: none; */
@@ -116,13 +165,6 @@
   box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
-.item:hover:not(.inactive)::before {
-  z-index: -1;
-}
-.item:hover:not(.inactive) {
-  transform: var(--scale-up);
-  z-index: 2;
-}
 /* ------------------------------------------ */
 /* ------------------------------------------ */
 .dice:hover:not(.inactive) {
@@ -250,7 +292,9 @@
 /* --------------------------------------------------- */
 /* --------------------------------------------------- */
 .selected {
-  border-color: var(--frame-selected-color);
+  /* animation: animateSelection 5s infinite; */
+  border: 2px solid !important;
+  border-color: var(--frame-selected-color-back);
   transform: var(--scale-up);
   /* background-color: var(--inactive-color) !important; */
   /* box-shadow: inset 0px 10px 30px -20px rgba(255, 0, 0, 0.2); */
@@ -260,6 +304,7 @@
   /* cursor: not-allowed; */
 }
 .selected::before {
+  animation: animateSelectionBefore var(--selected-animation-duration) infinite;
   content: '';
   position: absolute;
   right: 0px;
@@ -267,11 +312,14 @@
   width: 100%;
   height: 100%;
   /* background-color: var(--selected-color-overlay); */
-  border-color: var(--frame-selected-color) !important ;
+  border: 2px solid !important;
+  /* border-color: var(--frame-selected-color-front) !important ; */
+  border-color: var(--frame-selected-color-front) !important ;
   border-radius: var(--border-radius-inner);
+
   /* box-shadow: inset -20px -5px 40px -1px rgba(255, 255, 255, 0.9),
     inset 0px 0px 5px 5px rgba(255, 255, 255, 1),
     0px 0px 5px 5px rgba(255, 255, 255, 1); */
-  box-shadow: 0px 0px 3px 3px var(--shadow-selected-color),
-    inset 0px 0px 5px 5px rgba(255, 255, 255, 1);
+  /* box-shadow: 0px 0px 3px 3px var(--shadow-selected-color); */
+  /* inset 0px 0px 5px 5px rgba(255, 255, 255, 1); */
 }
