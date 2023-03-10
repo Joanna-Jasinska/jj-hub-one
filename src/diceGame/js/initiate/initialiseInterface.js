@@ -1,5 +1,6 @@
 //
 import { newGameFunctions } from './newGameFunctions';
+import { newGame } from '../../data/newgame';
 import { onDices } from '../interface/onDices';
 import { onItems } from '../interface/onItems';
 import { log } from './../functions';
