@@ -1,7 +1,7 @@
 import { log } from '../functions';
 import { clearGame } from '../interface/clear-game';
-import { _ng_dicesGenerate } from '../initiate/_ng_dices-generate';
-import { _ng_itemsGenerate } from '../initiate/_ng_items-generate';
+import { _ng_dicesGenerate } from './_ng_dices-generate';
+import { _ng_itemsGenerate } from './_ng_items-generate';
 export const newGameFunctions = {
   initiateNewGame(newGameState = newGame) {
     log(`initiateNewGame(newGameState = ${newGameState})`);

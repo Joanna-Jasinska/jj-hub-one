@@ -3,7 +3,10 @@
   --animation-duration: 250ms;
   --frame-default-color: black;
   /* --frame-selected-color: rgb(185, 184, 142); */
-  --frame-selected-color: rgb(81, 75, 0);
+  --frame-selected-color: rgb(114, 180, 0); /*green*/
+  --shadow-selected-color: rgb(176, 255, 157); /*green*/
+  --frame-selected-color: rgb(0, 180, 99); /*aqua*/
+  --shadow-selected-color: rgb(157, 255, 234); /*aqua*/
   --frame-dice-width: 50px;
   --frame-dice-height: 80px;
   --font-dice-face: 40px;
@@ -13,6 +16,8 @@
   --selected-color-overlay: rgba(255, 255, 255, 0.5);
   --border-radius-default: 20%;
   --border-radius-inner: 15%;
+  --scale-up: scale(1.1);
+  --scale-down: scale(0.9);
 
   --dice-bg-color-bad: #ffcc99; /* l red */
   --dice-bg-color-medium: #ffffbb; /* l yellow */
@@ -28,11 +33,29 @@
   transition: transform var(--animation-duration) var(--timing-function);
 }
 .button:hover {
-  transform: scale(1.1);
+  transform: var(--scale-up);
+}
+
+.header:focus,
+.header:hover {
+  overflow: visible;
+}
+.header {
+  overflow: hidden;
+  margin: 11px 0;
+  display: grid;
+  /* max-width: 1140px; */
+  grid-template-columns: repeat(auto-fit, minmax(30px, 60px));
+  grid-auto-rows: 30px;
+  grid-gap: 8px;
+  justify-content: left;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(209, 224, 219);
 }
 
 .bag {
-  margin: 10px 0;
+  margin: 11px 0;
   display: grid;
   max-width: 1140px;
   grid-template-columns: repeat(
@@ -56,13 +79,14 @@
 /* ------------------------------------------ */
 :not(.inactive).item::before {
   content: '';
+  /* display: none; */
   position: absolute;
   background-color: #f6e6b3;
-  /* right: -1px; */
-  /* top: 1px; */
-  left: -2px;
-  bottom: -8;
-  z-index: -3;
+  right: -4px;
+  top: 1px;
+  /* left: -2px;
+  bottom: -8; */
+  z-index: -1;
   width: 100%;
   height: 100%;
   border: 3px;
@@ -78,7 +102,7 @@
   /* left: 0; */
   padding: 0 5px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
   border: 3px;
   border-style: solid;
   border-color: var(--frame-default-color);
@@ -92,19 +116,32 @@
   box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
+.item:hover:not(.inactive)::before {
+  z-index: -1;
+}
 .item:hover:not(.inactive) {
-  transform: scale(1.1);
+  transform: var(--scale-up);
+  z-index: 2;
 }
 /* ------------------------------------------ */
 /* ------------------------------------------ */
+.dice:hover:not(.inactive) {
+  transform: var(--scale-up);
+  z-index: 2;
+}
+.dice:hover:not(.inactive)::before {
+  z-index: -1;
+}
 :not(.inactive).dice::before {
   content: '';
   position: absolute;
-  /* right: -1px; */
-  /* top: 1px; */
-  left: -2px;
-  bottom: -8;
-  z-index: -3;
+  z-index: -1;
+  right: -4px;
+  top: 1px;
+  /* right: -1px;
+  top: 1px; */
+  /* left: -2px;
+  bottom: -8; */
   width: 100%;
   height: 100%;
   border: 3px;
@@ -116,10 +153,11 @@
 }
 .dice {
   position: relative;
+  top: -2px;
   /* left: 0; */
   padding: 0 5px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
   border: 3px;
   border-style: solid;
   border-color: var(--frame-default-color);
@@ -133,9 +171,6 @@
   box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
-.dice:hover:not(.inactive) {
-  transform: scale(1.1);
-}
 /* ------------------------------------------ */
 /* ------------------------------------------ */
 
@@ -189,12 +224,12 @@
 /* --------------------------------------------------- */
 
 .inactive {
-  transform: scale(0.9);
+  transform: var(--scale-down);
   /* background-color: var(--inactive-color) !important; */
   /* box-shadow: inset 0px 10px 30px -20px rgba(255, 0, 0, 0.2); */
 }
 .inactive:hover {
-  transform: scale(0.9);
+  transform: var(--scale-down);
   cursor: not-allowed;
 }
 .inactive::before {
@@ -216,13 +251,13 @@
 /* --------------------------------------------------- */
 .selected {
   border-color: var(--frame-selected-color);
-  transform: scale(1.12);
+  transform: var(--scale-up);
   /* background-color: var(--inactive-color) !important; */
   /* box-shadow: inset 0px 10px 30px -20px rgba(255, 0, 0, 0.2); */
 }
 .selected:hover {
-  transform: scale(1.12);
-  cursor: not-allowed;
+  transform: var(--scale-up);
+  /* cursor: not-allowed; */
 }
 .selected::before {
   content: '';
@@ -237,6 +272,6 @@
   /* box-shadow: inset -20px -5px 40px -1px rgba(255, 255, 255, 0.9),
     inset 0px 0px 5px 5px rgba(255, 255, 255, 1),
     0px 0px 5px 5px rgba(255, 255, 255, 1); */
-  box-shadow: 0px 0px 4px 4px rgba(255, 255, 255, 1),
+  box-shadow: 0px 0px 3px 3px var(--shadow-selected-color),
     inset 0px 0px 5px 5px rgba(255, 255, 255, 1);
 }
