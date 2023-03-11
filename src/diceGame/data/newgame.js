@@ -26,6 +26,8 @@ export const newGame = {
     {
       id: 'reroll',
     },
-    {},
+    {
+      id: 'delete',
+    },
   ],
 };

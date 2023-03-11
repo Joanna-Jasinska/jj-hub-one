@@ -1,5 +1,11 @@
-export const log = (l = '------------------------------------------------') => {
+export const log = (
+  l = '------------------------------------------------',
+  monitor = false
+) => {
   console.log(l);
+  return monitor && l && l != '------------------------------------------------'
+    ? l
+    : false;
 };
 
 export const functions = {
@@ -24,23 +30,23 @@ export const functions = {
     return dices[rNum];
   },
 
-  getDiceBackgroundColor(rolled, max = 6, min = 1) {
-    let bad = '#ffcc99'; //'#ffaa77'; //'#ff9966'; //red
-    let med = '#ffffbb'; //'#ffff99'; //yell
-    let uncommon = '#cfff9f'; //'#ccff99'; //l green
-    let epic = '#ff66ff'; // pink
-    let mythic = '#00ffff'; //'#66ffff'; // l blue
-    let perfect = '#00ff00'; // neon green
-    if (rolled == 20) return mythic;
-    if (rolled == min) return bad;
-    if (rolled == max) return perfect;
-    if (rolled <= Math.floor((max - min) / 5) + min) {
-      return bad;
-    }
-    if (rolled > 14) return epic;
-    if (rolled > 9) return uncommon;
-    return med;
-  },
+  // getDiceBackgroundColor(rolled, max = 6, min = 1) {
+  //   let bad = '#ffcc99'; //'#ffaa77'; //'#ff9966'; //red
+  //   let med = '#ffffbb'; //'#ffff99'; //yell
+  //   let uncommon = '#cfff9f'; //'#ccff99'; //l green
+  //   let epic = '#ff66ff'; // pink
+  //   let mythic = '#00ffff'; //'#66ffff'; // l blue
+  //   let perfect = '#00ff00'; // neon green
+  //   if (rolled == 20) return mythic;
+  //   if (rolled == min) return bad;
+  //   if (rolled == max) return perfect;
+  //   if (rolled <= Math.floor((max - min) / 5) + min) {
+  //     return bad;
+  //   }
+  //   if (rolled > 14) return epic;
+  //   if (rolled > 9) return uncommon;
+  //   return med;
+  // },
   getDiceBackgroundColorName(rolled, max = 6, min = 1) {
     let varNamePart = `--dice-bg-color-`;
     if (rolled == 20) return varNamePart + `mythic`;

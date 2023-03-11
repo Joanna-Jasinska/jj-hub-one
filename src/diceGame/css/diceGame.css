@@ -8,7 +8,9 @@
   /*--shadow-selected-color: rgb(157, 255, 234); /*aqua*/
   --frame-selected-color-back: rgb(0, 0, 0); /*yellow*/
   --frame-selected-color-front: rgb(241, 229, 0); /*yellow*/
-  --frame-selected-color-front: rgb(255, 245, 58); /*yellow*/
+  --frame-selected-color-front1: rgb(255, 245, 58); /*yellow*/
+  --frame-selected-color-front: rgb(255, 220, 0); /*yellow orange*/
+  --frame-selected-color-front2: rgb(255, 210, 0); /*yellow orange*/
   /*--shadow-selected-color: rgb(255, 252, 157); /*yellow light*/
   /*--shadow-selected-color: rgb(255, 251, 126); /*yellow stronger*/
   --frame-dice-width: 50px;
@@ -23,6 +25,8 @@
   --scale-up: scale(1.1);
   --scale-down: scale(0.9);
   --selected-animation-duration: 1.2s;
+  --selected-rotation: -369deg;
+  --selected-rotation-hover: -360deg;
 
   --dice-bg-color-bad: #ffcc99; /* l red */
   --dice-bg-color-medium: #ffffbb; /* l yellow */
@@ -31,23 +35,12 @@
   --dice-bg-color-mythic: #00ffff; /* l blue */
   --dice-bg-color-perfect: #00ff00; /* neon green */
 }
-@keyframes animateSelection {
-  0% {
-    /* 0px 0px 3px 3px var(--shadow-selected-color), */
-    /* box-shadow: inset 0px 0px 5px 5px rgba(255, 255, 255, 1); */
-    transform: var(--scale-up);
-  }
-  50% {
-    transform: scale(1.13);
-  }
-  100% {
-    /* box-shadow: inset 0px 0px 5px 5px rgba(255, 255, 255, 1); */
-    transform: var(--scale-up);
-  }
-}
+
 @keyframes animateSelectionBefore {
   0% {
     /* var(--shadow-selected-color) */
+    border: 3px solid var(--frame-selected-color-front2);
+
     box-shadow: 0px 0px 2px 2px var(--frame-default-color),
       inset 0 0 3px 4px rgba(255, 255, 255, 0.9);
     /* 0px 0px 3px 3px var(--shadow-selected-color), */
@@ -55,6 +48,8 @@
   }
   50% {
     /* var(--shadow-selected-color) */
+
+    border: 3px solid var(--frame-selected-color-front1);
     box-shadow: 0px 0px 3px 2px var(--frame-default-color),
       inset 0px 0px 7px 6px rgb(255, 255, 255);
     /* box-shadow: inset 0 0 0 0 white; */
@@ -62,6 +57,8 @@
   }
   100% {
     /* var(--shadow-selected-color) */
+
+    border: 3px solid var(--frame-selected-color-front2);
     box-shadow: 0px 0px 2px 2px var(--frame-default-color),
       inset 0 0 3px 4px rgba(255, 255, 255, 0.9);
     /* box-shadow: inset 0px 0px 5px 5px rgba(255, 255, 255, 1); */
@@ -119,10 +116,10 @@
 }
 /* ------------------------------------------ */
 /* ------------------------------------------ */
-.item:hover:not(.inactive)::before {
+.item:hover:not(.inactive):not(.selected)::before {
   z-index: -1;
 }
-.item:hover:not(.inactive) {
+.item:hover:not(.inactive):not(.selected) {
   transform: var(--scale-up);
   z-index: 2;
 }
@@ -146,6 +143,7 @@
   /* box-shadow: 0px 10px 3px 3px rgba(255, 0, 0, 0.2); */
 }
 .item {
+  overflow: hidden;
   position: relative;
   background-color: #f6e6b3;
   /* left: 0; */
@@ -167,11 +165,11 @@
 
 /* ------------------------------------------ */
 /* ------------------------------------------ */
-.dice:hover:not(.inactive) {
+.dice:hover:not(.inactive):not(.selected) {
   transform: var(--scale-up);
   z-index: 2;
 }
-.dice:hover:not(.inactive)::before {
+.dice:hover:not(.inactive):not(.selected)::before {
   z-index: -1;
 }
 :not(.inactive).dice::before {
@@ -194,6 +192,7 @@
   /* box-shadow: 0px 10px 3px 3px rgba(255, 0, 0, 0.2); */
 }
 .dice {
+  overflow: hidden;
   position: relative;
   top: -2px;
   /* left: 0; */
@@ -293,15 +292,18 @@
 /* --------------------------------------------------- */
 .selected {
   /* animation: animateSelection 5s infinite; */
+  position: relative;
+  left: -1px;
   border: 2px solid !important;
   border-color: var(--frame-selected-color-back);
-  transform: var(--scale-up);
+  transform: var(--scale-up) rotate(var(--selected-rotation));
   /* background-color: var(--inactive-color) !important; */
   /* box-shadow: inset 0px 10px 30px -20px rgba(255, 0, 0, 0.2); */
 }
 .selected:hover {
-  transform: var(--scale-up);
-  /* cursor: not-allowed; */
+  /* transform: var(--scale-up); */
+  transform: var(--scale-up) rotate(var(--selected-rotation-hover));
+  cursor: grab;
 }
 .selected::before {
   animation: animateSelectionBefore var(--selected-animation-duration) infinite;
@@ -312,9 +314,9 @@
   width: 100%;
   height: 100%;
   /* background-color: var(--selected-color-overlay); */
-  border: 2px solid !important;
+  /* border: 3px solid !important; */
+  /* border-color: var(--frame-selected-color-front); */
   /* border-color: var(--frame-selected-color-front) !important ; */
-  border-color: var(--frame-selected-color-front) !important ;
   border-radius: var(--border-radius-inner);
 
   /* box-shadow: inset -20px -5px 40px -1px rgba(255, 255, 255, 0.9),

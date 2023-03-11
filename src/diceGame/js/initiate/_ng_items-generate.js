@@ -1,6 +1,6 @@
 import { log } from './../functions';
 import { items } from '../../data/items';
-import { functions } from '../functions';
+// import { functions } from '../functions';
 import { onItems } from '../interface/onItems';
 export const _ng_itemsGenerate = {
   fetchItem(itemId = 'use') {
@@ -53,7 +53,7 @@ export const _ng_itemsGenerate = {
       // diceMax.innerText = `${dmax}`;
       item.onclick = e => {
         e.preventDefault();
-        onItems.activateItem(e.currentTarget);
+        onItems.clickItem(e.currentTarget);
       };
     }
   },
