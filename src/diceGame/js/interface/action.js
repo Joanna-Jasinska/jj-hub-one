@@ -18,20 +18,37 @@ export const action = (actions = [[undefined], undefined]) => {
     return b[0] != 'action';
   };
   log(`action: proceeding with actions: ${a}`);
+  //---------------------------------------------------------------------------
+  //---------------------------------------------------------------------------
+  //---------------------------------------------------------------------------
   switch (a[0]) {
     case undefined:
       break;
+    case 'deletedices':
+      next(a);
+      if (!isNaN(a[0])) {
+        for (let i = 0; i < parseInt(a[0]); i++) {
+          let selectedDice = document.querySelector('.dice.selected');
+          onDices.deleteDice(selectedDice);
+        }
+        next(a);
+      } else {
+        let selectedDice = document.querySelector('.dice.selected');
+        if (selectedDice) {
+          onDices.deleteDice(selectedDice);
+        }
+      }
     case 'deselectdices':
       next(a);
       if (!isNaN(a[0])) {
         for (let i = 0; i < parseInt(a[0]); i++) {
           let selectedDice = document.querySelector('.dice.selected');
-          onDices.deselectDiceDice(selectedDice);
+          onDices.deselectDice(selectedDice);
         }
       } else {
         let selectedDice = document.querySelector('.dice.selected');
         for (d in selectedDice) {
-          onDices.deselectDiceDice(d);
+          onDices.deselectDice(d);
         }
       }
       next(a);
@@ -57,7 +74,7 @@ export const action = (actions = [[undefined], undefined]) => {
       if (!isNaN(a[0])) {
         for (let i = 0; i < parseInt(a[0]); i++) {
           let selectedDice = document.querySelector('.dice.selected');
-          onDices.rollDice(selectedDice);
+          onDices.rollDice(selectedDice,true);
           //   onDices.deselectDice(selectedDice);
         }
       } else {
@@ -65,7 +82,7 @@ export const action = (actions = [[undefined], undefined]) => {
         let selectedDices = document.querySelectorAll('.dice.selected');
         for (d of selectedDices) {
           log(d);
-          onDices.rollDice(d);
+          onDices.rollDice(d,true);
           //   onDices.deselectDice(d);
         }
       }
@@ -73,7 +90,9 @@ export const action = (actions = [[undefined], undefined]) => {
     default:
       break;
   }
-
+  //---------------------------------------------------------------------------
+  //---------------------------------------------------------------------------
+  //---------------------------------------------------------------------------
   clearGame.clearSelections();
   return false;
 };

@@ -2,6 +2,8 @@
 import { clearGame } from './clear-game';
 import { action } from './action';
 import { log } from '../functions';
+import { _ng_dicesGenerate } from '../initiate/_ng_dices-generate';
+import { _ng_itemsGenerate } from '../initiate/_ng_items-generate';
 export const onItems = {
   clickItem(o) {
     log(`onItems: clickItem`);
@@ -12,9 +14,12 @@ export const onItems = {
     }
   },
   getActions(o) {
-    log('getActions');
+    log('onItems: getActions');
     if (!o) return [[0], undefined];
-    return [['disabledices', 1, 'disableself', 'rerolldices'], o];
+    log('o.getAttribute(code): ' + o.getAttribute('code'));
+    log(_ng_itemsGenerate.fetchItem(o.getAttribute('code')).actions);
+    return [_ng_itemsGenerate.fetchItem(o.getAttribute('code')).actions, o];
+    // return [['disabledices', 1, 'disableself', 'rerolldices'], o];
   },
   checkActivation(o) {
     const selected = document.querySelectorAll('.dice.selected').length;

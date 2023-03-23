@@ -37,12 +37,16 @@ export const onDices = {
     }
     this.deselectDice(o);
   },
-  rollDice(o) {
+  rollDice(o, getDiffNum = false) {
     if (!o) return;
     const diceFace = o.querySelector('.dice__rolled');
     const diceMax = o.querySelector('.dice__max');
     const dmax = parseInt(diceMax.innerText);
+    const oldNum = Number(diceFace.innerText);
     let dface = functions.getRandom(dmax);
+    while (getDiffNum && dface == oldNum) {
+      dface = functions.getRandom(dmax);
+    }
     diceFace.innerText = `${dface}`;
     o.setAttribute(
       'bgcolor',
